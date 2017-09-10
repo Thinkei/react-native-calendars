@@ -328,6 +328,7 @@ export default class AgendaView extends Component {
         <Animated.View style={headerStyle}>
           <Animated.View style={{flex:1, transform: [{ translateY: contentTranslate }]}}>
             <CalendarList
+              {...this.props}
               theme={this.props.theme}
               onVisibleMonthsChange={this.onVisibleMonthsChange.bind(this)}
               ref={(c) => this.calendar = c}
