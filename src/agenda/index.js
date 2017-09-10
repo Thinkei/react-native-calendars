@@ -34,6 +34,8 @@ export default class AgendaView extends Component {
     // the value of date key has to be an empty array []. If there exists no value for date key it is
     // considered that the date in question is not yet loaded
     items: PropTypes.object,
+    // Collection of dates that have to be marked. Default = {}
+    markedDates: PropTypes.object,
 
     // callback that gets called when items for a certain month should be loaded (month became visible)
     loadItemsForMonth: PropTypes.func,
@@ -333,7 +335,7 @@ export default class AgendaView extends Component {
               maxDate={this.props.maxDate}
               selected={[this.state.selectedDay]}
               current={this.currentMonth}
-              markedDates={this.props.items}
+              markedDates={this.props.markedDates || this.props.items}
               onDayPress={this._chooseDayFromCalendar.bind(this)}
               scrollingEnabled={this.state.calendarScrollable}
               hideExtraDays={this.state.calendarScrollable}
