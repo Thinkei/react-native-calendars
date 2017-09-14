@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   ListView,
   ActivityIndicator,
   View,
-  Text
+  Text,
+  KeyboardAvoidingView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import XDate from 'xdate';
@@ -228,16 +229,21 @@ class ReactComp extends Component {
       return (<ActivityIndicator style={{marginTop: 80}}/>);
     }
     return (
-      <ListView
-        ref={(c) => this.list = c}
-        style={this.props.style}
-        renderRow={this.renderRow.bind(this)}
-        dataSource={this.state.reservationsSource}
-        onScroll={this.onScroll.bind(this)}
-        showsVerticalScrollIndicator={false}
-        scrollEventThrottle={200}
-        onMoveShouldSetResponderCapture={() => {this.onListTouch(); return false;}}
-      />
+      <KeyboardAvoidingView
+        behavior={'position'}
+        keyboardVerticalOffset={200}
+      >
+        <ListView
+          ref={(c) => this.list = c}
+          style={this.props.style}
+          renderRow={this.renderRow.bind(this)}
+          dataSource={this.state.reservationsSource}
+          onScroll={this.onScroll.bind(this)}
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={200}
+          onMoveShouldSetResponderCapture={() => {this.onListTouch(); return false;}}
+        />
+      </KeyboardAvoidingView>
     );
   }
 }
